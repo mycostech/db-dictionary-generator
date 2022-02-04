@@ -154,7 +154,6 @@ async function write(config,templatePath = "|default|") {
         template = readFs(templatePath);
     }
 
-    var template = data.toString();
     var htmlContent = generateHtml(schema, template, config);
 
     fs.writeFile('./dictionary.html',htmlContent,err => {
