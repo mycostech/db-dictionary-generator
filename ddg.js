@@ -151,7 +151,7 @@ async function write(config,templatePath = "|default|") {
     if(templatePath === "|default|"){
         template = defaultTemplate;
     }else{
-        template = readFs(templatePath);
+        template = await readFs(templatePath);
     }
 
     var htmlContent = generateHtml(schema, template, config);
