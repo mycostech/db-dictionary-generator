@@ -4,23 +4,24 @@ using knex as query builder
 
 # Usage
 
-using write(config, ?templatePath) to generate html  on current directory.
+using **write(config, ?templateString)** to generate html on current directory.
+
 
 ex. 
-> const ddg = require("db-dictionary-generator");
+>const ddg = require("data-dictionary-generator");
 
-> let config = {
+>var config = {
     client: "pg",
     version: "14",
     connection: {
         host: "localhost",
         port: "5432",
         user: "postgres",
-        password: "postgres",
+        password: "112345",
         database: "testdb",
     }
 }
 
-> ddg.write(config);
+>ddg.write(config);
 
 
