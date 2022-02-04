@@ -114,22 +114,22 @@ function closeConnection(con){
     con.destroy();
 }
 
-async function readFs(templatePath){
-    return await fs.readFile(templatePath,(err,data) => {
-        if (err) {
-          console.error(err);
-          return "";
-        }else
-            return data.toString();
-    });
-}
+// async function readFs(templatePath){
+//     return await fs.readFile(templatePath,(err,data) => {
+//         if (err) {
+//           console.error(err);
+//           return "";
+//         }else
+//             return data.toString();
+//     });
+// }
 
 /**
  * main function
  * @param {*} config 
  * @returns 
  */
-async function write(config,templatePath = "|default|") {
+async function write(config,_template = "|default|") {
     const knex = require('knex')(config);
     const inspector = schemaInspector.default(knex);
 
@@ -148,12 +148,16 @@ async function write(config,templatePath = "|default|") {
     //Create dictionary file
     console.log("start export file process");
     var template = "";
-    if(templatePath === "|default|"){
+    if(_template === "|default|"){
         template = defaultTemplate;
     }else{
-        template = await readFs(templatePath);
+        template = _template;
     }
+    // else{
+    //     template = await readFs(templatePath);
+    // }
 
+    //console.log(template);
     var htmlContent = generateHtml(schema, template, config);
 
     fs.writeFile('./dictionary.html',htmlContent,err => {
