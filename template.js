@@ -90,7 +90,7 @@ var template = `
 
         \${tableStart}<div class="tableObject">
             <div>
-                <h2 id="table-\${tableName}"><span class="top-btn" title="back to top" onclick="toTop()">&#8593;</span> Table: ${tableName}</h2>
+                <h2 id="table-\${tableName}"><span class="top-btn" title="back to top" onclick="toTop()">&#8593;</span> Table: \${tableName}</h2>
             </div>
             \${tableContent}
         </div>
