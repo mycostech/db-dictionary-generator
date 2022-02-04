@@ -1,4 +1,5 @@
 let schemaInspector = require('knex-schema-inspector');
+let defaultTemplate = require('./template.js')
 const fs = require('fs');
 
 var config = {
@@ -113,12 +114,22 @@ function closeConnection(con){
     con.destroy();
 }
 
+async function readFs(templatePath){
+    return await fs.readFile(templatePath,(err,data) => {
+        if (err) {
+          console.error(err);
+          return "";
+        }else
+            return data.toString();
+    });
+}
+
 /**
  * main function
  * @param {*} config 
  * @returns 
  */
-async function write(config,templatePath = "./template.html") {
+async function write(config,templatePath = "|default|") {
     const knex = require('knex')(config);
     const inspector = schemaInspector.default(knex);
 
@@ -136,33 +147,28 @@ async function write(config,templatePath = "./template.html") {
 
     //Create dictionary file
     console.log("start export file process");
-    fs.readFile(templatePath,(err,data) => {
-        if (err) {
-          console.error(err);
-          closeConnection(knex);
-          return "";
-        }else{
-            
-            var template = data.toString();
-            var htmlContent = generateHtml(schema, template, config);
+    var template = "";
+    if(templatePath === "|default|"){
+        template = defaultTemplate;
+    }else{
+        template = readFs(templatePath);
+    }
 
-            fs.writeFile('./dictionary.html',htmlContent,err => {
-                if (err) {
-                  console.error(err);
-                  closeConnection(knex);
-                  return;
-                }else{
-                    console.log("write file success");
-                    closeConnection(knex);
-                    return;
-                }
-                
-            });
+    var template = data.toString();
+    var htmlContent = generateHtml(schema, template, config);
+
+    fs.writeFile('./dictionary.html',htmlContent,err => {
+        if (err) {
+            console.error(err);
+            closeConnection(knex);
+            return;
+        }else{
+            console.log("write file success");
+            closeConnection(knex);
             return;
         }
         
     });
-
     return;
 };
 

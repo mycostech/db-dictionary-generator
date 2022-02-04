@@ -1,9 +1,10 @@
+var template = `
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>${dbName} data dictionary</title>
+    <title>\${dbName} data dictionary</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
         body{
@@ -81,19 +82,21 @@
         }
     </script>
     <div class="container">
-        <h1>Database: ${dbName}</h1>
-        <p>This document is generated on ${createDate}</p>
+        <h1>Database: \${dbName}</h1>
+        <p>This document is generated on \${createDate}</p>
         
         <h3>List of tables</h3>
-        ${tableList}
+        \${tableList}
 
-        ${tableStart}<div class="tableObject">
+        \${tableStart}<div class="tableObject">
             <div>
-                <h2 id="table-${tableName}"><span class="top-btn" title="back to top" onclick="toTop()">&#8593;</span> Table: ${tableName}</h2>
+                <h2 id="table-\${tableName}"><span class="top-btn" title="back to top" onclick="toTop()">&#8593;</span> Table: ${tableName}</h2>
             </div>
-            ${tableContent}
+            \${tableContent}
         </div>
-        ${tableEnd}
+        \${tableEnd}
     </div>
 </body>
-</html>
+</html>`
+
+module.exports = template;
