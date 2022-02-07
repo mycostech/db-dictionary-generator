@@ -8,8 +8,7 @@ using **write(config, ?templateString)** to generate html on current directory.
 
 
 ex. 
->const ddg = require("data-dictionary-generator");
-
+>const ddg = require("data-dictionary-generator");  
 >var config = {
     client: "pg",
     version: "14",
@@ -20,8 +19,7 @@ ex.
         password: "112345",
         database: "testdb",
     }
-}
-
+}  
 >ddg.write(config);
 
 
