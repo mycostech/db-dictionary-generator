@@ -8,9 +8,9 @@ using **write(config, ?templateString)** to generate html on current directory.
 
 
 ex. 
->const ddg = require("data-dictionary-generator");
-
->var config = {
+```js
+const ddg = require("data-dictionary-generator");  
+var config = {
     client: "pg",
     version: "14",
     connection: {
@@ -20,8 +20,7 @@ ex.
         password: "112345",
         database: "testdb",
     }
-}
-
->ddg.write(config);
-
+}  
+ddg.write(config);
+```
 
