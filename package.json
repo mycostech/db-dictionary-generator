@@ -1,6 +1,9 @@
 {
   "name": "data-dictionary-generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
+  "bin": {
+    "ddg-write": "run.js"
+  },
   "dependencies": {
     "pg": "^8.7.1",
     "knex": "^1.0.1",
