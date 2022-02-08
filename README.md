@@ -24,3 +24,8 @@ var config = {
 ddg.write(config);
 ```
 
+# global cli (v1.0.2)
+use **ddg-write** to generate html on current directory via bash or cmd.
+for config you can pass in below format
+
+```ddg-write --client=pg --version=14 --port=5432 --host=localhost --user=postgres --password=112345 --database=testdb```
